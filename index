@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Systems Visualization</title>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <style>
+    #chart {
+      max-width: 650px;
+      margin: 35px auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script>
+    var options = {
+      chart: {
+        type: 'bar',
+        height: 350,
+        stacked: true,
+        toolbar: {
+          show: false
+        }
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          borderRadius: 4,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      series: [
+        {
+          name: 'ATP-PC',
+          data: [100, 20, 10]
+        },
+        {
+          name: 'Glycolytic',
+          data: [0, 70, 40]
+        },
+        {
+          name: 'Oxidative',
+          data: [0, 10, 90]
+        }
+      ],
+      colors: ['#ff5c5c', '#ffcc00', '#00b300'],
+      xaxis: {
+        categories: ['0-10 sec', '10 sec - 2 min', '2 min+'],
+        title: {
+          text: 'Time Duration',
+          style: {
+            fontWeight: 600
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Energy Contribution (%)',
+          style: {
+            fontWeight: 600
+          }
+        },
+        max: 100
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'center',
+        fontSize: '14px'
+      },
+      title: {
+        text: 'Energy Systems Over Time',
+        align: 'center',
+        style: {
+          fontSize: '20px',
+          fontWeight: 'bold',
+          color: '#333'
+        }
+      },
+      tooltip: {
+        y: {
+          formatter: function (val) {
+            return val + '%';
+          }
+        }
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
+</body>
+</html>
